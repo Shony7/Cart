@@ -51,7 +51,7 @@ User user1 = (User) session.getAttribute("currentuser");
 				%>
 				<ul class="navbar-nav ml-auto">
 					<li class="mx-5"><a class="nav-link" href="#"><%=user1.getUserName()%></a></li>
-					<li class=""><a class="nav-link" href="register.jsp">Logout</a></li>
+					<li class=""><a class="nav-link" href="LogoutServlet">Logout</a></li>
 				</ul>
 				<%
 				}
