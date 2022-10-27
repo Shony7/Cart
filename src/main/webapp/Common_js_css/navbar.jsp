@@ -1,3 +1,9 @@
+<%@page import="com.clicktocart.entity.User"%>
+<%
+User user1 = (User) session.getAttribute("currentuser");
+%>
+
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -32,10 +38,27 @@
 							<a class="dropdown-item" href="#">Something else here</a>
 						</div></li>
 				</ul>
+
+				<%
+				if (user1 == null) {
+				%>
 				<ul class="navbar-nav ml-auto">
 					<li class="mx-5"><a class="nav-link" href="login.jsp">Login</a></li>
 					<li class=""><a class="nav-link" href="register.jsp">Register</a></li>
 				</ul>
+				<%
+				} else {
+				%>
+				<ul class="navbar-nav ml-auto">
+					<li class="mx-5"><a class="nav-link" href="#"><%=user1.getUserName()%></a></li>
+					<li class=""><a class="nav-link" href="register.jsp">Logout</a></li>
+				</ul>
+				<%
+				}
+				%>
+
+
+
 			</div>
 		</div>
 	</nav>
