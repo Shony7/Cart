@@ -12,11 +12,7 @@
 <title>ClickToCart</title>
 </head>
 <body>
+	<!-- Navigation bar which you seeing with all the Register , Home , Login Options the below line is responsible for that -->
 	<%@ include file="Common_js_css/navbar.jsp"%>
-	<h1>Hello World</h1>
-	<h1>Creating Session Facotry</h1>
-	<%
-	out.print(FactoryProvider.getFactory());
-	%>
 </body>
 </html>

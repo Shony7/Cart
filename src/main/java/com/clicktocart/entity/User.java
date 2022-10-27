@@ -5,6 +5,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 
 @Entity
 public class User {
@@ -13,18 +15,20 @@ public class User {
 	@Column(length = 10, name = "user_id")
 	private int userId;
 	
-	@Column(length = 100, name = "user_name")
+	@Column(length = 100, name = "user_name", unique = true)
 	private String userName;
-	@Column(length = 100, name = "user_email")
+	@Column(length = 100, name = "user_email",  unique = true)
 	private String userEmail;
 	@Column(length = 100, name = "user_password")
 	private String userPassword;
 	@Column(length = 12, name = "user_phone")
 	private String userPhone;
-	@Column(length = 1500, name = "user_pic")
+	@Column(length = 1500, name = "user_pic", unique = true)
 	private String userPic;
 	@Column(length = 1500, name = "user_address")
 	private String userAddress;
+	@Column(name="user_type")
+	private String userType;
 	
 	public User() {
 		
@@ -53,6 +57,20 @@ public class User {
 		this.userAddress = userAddress;
 	}
 	
+	
+	
+	public User(String userName, String userEmail, String userPassword, String userPhone, String userPic,
+			String userAddress, String userType) {
+		super();
+		this.userName = userName;
+		this.userEmail = userEmail;
+		this.userPassword = userPassword;
+		this.userPhone = userPhone;
+		this.userPic = userPic;
+		this.userAddress = userAddress;
+		this.userType = userType;
+	}
+
 	public int getUserId() {
 		return userId;
 	}
@@ -94,6 +112,14 @@ public class User {
 	}
 	public void setUserAddress(String userAddress) {
 		this.userAddress = userAddress;
+	}
+	
+	public String getUserType() {
+		return userType;
+	}
+
+	public void setUserType(String userType) {
+		this.userType = userType;
 	}
 
 	@Override
