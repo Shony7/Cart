@@ -35,6 +35,7 @@ public class ProductOperationServlet extends HttpServlet {
 			// Fetching category data
 			System.out.println("Entered the addcat");
 			if (request.getParameter("operations").trim().equals("addCategory")) {
+				//Getting all the input values from the Add Category for in the Admin page
 				String cattitle = request.getParameter("catTitle");
 				String catdesc = request.getParameter("catDesc");
 				
@@ -46,6 +47,7 @@ public class ProductOperationServlet extends HttpServlet {
 				response.sendRedirect("admin.jsp");
 			}
 			else if(request.getParameter("operations").trim().equals("addProduct")) {
+				//Getting all the input values from the Add Products for in the Admin page
 				String pName = request.getParameter("pName");
 				String pDesc = request.getParameter("prodDesc");
 				int pPrice= Integer.parseInt(request.getParameter("prodPrice"));
@@ -54,16 +56,28 @@ public class ProductOperationServlet extends HttpServlet {
 				int pCat =Integer.parseInt(request.getParameter("prodCat"));
 				Part part = request.getPart("pPic");
 				
+				//Creating new Product object and saving the values
 				Products product = new Products();
 				product.setpDescription(pDesc);
 				product.setpDiscount(pDiscount);
 				product.setpName(pName);
 				product.setpPrice(pPrice);
 				product.setpQuantity(pQuantity);
+				//Just saving the name of the photo
 				product.setpPic(part.getSubmittedFileName());
+				//getting the category object and saving it in products
 				product.setCategory(new CategoryDao().getCategoryById(pCat));
 				
+				
 				//new ProductDao().setProductDetails(product);
+				
+				
+				//Saving the photo of products into folder present in the Project
+				// TODO See if this part is right
+				// TODO See if mysql driver is in TOMCAT Folder
+				//Might need to change when Safa intall this in her system
+				System.out.println(request.getRealPath("img"));
+				
 				HttpSession httpSession = request.getSession();
 				httpSession.setAttribute("message", "Product Details is saved");
 				response.sendRedirect("admin.jsp");

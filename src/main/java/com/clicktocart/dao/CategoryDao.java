@@ -41,7 +41,7 @@ public class CategoryDao {
 			category = session.get(Category.class, id);
 			session.close();
 		} catch (Exception e) {
-			// TODO: handle exception
+			e.printStackTrace();
 		}
 		return category;
 	}
