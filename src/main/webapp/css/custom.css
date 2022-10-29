@@ -4,3 +4,10 @@
 .login-bg{
 	background:#4dd0e1;
 }
+
+.admin-page .card:hover{
+	background: rgb(192, 192, 192);
+}
+.admin-page .card{
+	cursor: pointer;
+}
