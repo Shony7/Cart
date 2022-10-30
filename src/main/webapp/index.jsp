@@ -54,24 +54,29 @@
 				<div class="row">
 
 					<%
-						for(Products products:list){
-					%>	
-						
-					<div class="col-md-4 mt-2">
-						<div class="card" style="width: 18rem;">
-							<img class="card-img-top w-75" src="img/products/<%=products.getpPic()%>" alt="Card image cap">
+					for (Products products : list) {
+					%>
+
+					<div class="col-md-3 mt-2 h-75">
+						<div class="card w-100" style="width: 18rem;">
+
+							<img class="card-img-top"
+								src="img/products/<%=products.getpPic()%>" alt="Card image cap">
 							<div class="card-body">
-								<h5 class="card-title"><%=products.getpName() %></h5>
+								<h5 class="card-title"><%=products.getpName()%></h5>
 								<p class="card-text"><%=products.getpDescription()%></p>
 								<p class="card-text">&#8377;<%=products.getpPrice()%></p>
-								
+
 							</div>
 							<div class="card-footer">
-							<button type="button" class="btn btn-primary">Add to Cart</button>
+								<button type="button" class="btn btn-primary">Add to
+									Cart</button>
 							</div>
 						</div>
 					</div>
-					<% } %>
+					<%
+					}
+					%>
 				</div>
 
 
