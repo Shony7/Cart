@@ -1,21 +1,23 @@
 package com.clicktocart.servlet;
 
-import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.MultipartConfig;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
-import jakarta.servlet.http.Part;
-
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 
 import com.clicktocart.dao.CategoryDao;
 import com.clicktocart.dao.ProductDao;
 import com.clicktocart.entity.Category;
 import com.clicktocart.entity.Products;
-import com.clicktocart.helper.FactoryProvider;
+
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import jakarta.servlet.http.Part;
 
 /**
  * Servlet implementation class ProductOperationServlet
@@ -68,15 +70,31 @@ public class ProductOperationServlet extends HttpServlet {
 				//getting the category object and saving it in products
 				product.setCategory(new CategoryDao().getCategoryById(pCat));
 				
-				
-				//new ProductDao().setProductDetails(product);
+				//Saving PRoduct details in the database using DAO layer(Using DAO functions)
+				new ProductDao().setProductDetails(product);
 				
 				
 				//Saving the photo of products into folder present in the Project
 				// TODO See if this part is right
 				// TODO See if mysql driver is in TOMCAT Folder
-				//Might need to change when Safa intall this in her system
-				System.out.println(request.getRealPath("img"));
+				// TODO Might need to change when Safa intall this in her system
+				//Path to Upload
+				String path = request.getRealPath("img") + File.separator + "products" + File.separator + part.getSubmittedFileName();
+				
+				
+				//Saving the photo to path
+				FileOutputStream fos = new FileOutputStream(path);
+				InputStream is = part.getInputStream();
+				
+				//Reading the data
+				byte[] data = new byte[is.available()];
+				is.read(data);
+				
+				//writing the data
+				fos.write(data);
+				fos.close();
+				is.close();
+				
 				
 				HttpSession httpSession = request.getSession();
 				httpSession.setAttribute("message", "Product Details is saved");
