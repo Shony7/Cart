@@ -9,6 +9,8 @@ User user1 = (User) session.getAttribute("currentuser");
 <!DOCTYPE html>
 <html>
 <head>
+<%@ include file="common_js_css.jsp"%>
+<%@ include file="common_modal.jsp"%>
 <meta charset="UTF-8">
 </head>
 <body>
@@ -43,6 +45,9 @@ User user1 = (User) session.getAttribute("currentuser");
 				if (user1 == null) {
 				%>
 				<ul class="navbar-nav ml-auto">
+					<li class="mx-5"><a class="nav-link" href="" data-toggle="modal" data-target="#cart"><img
+							src="img/cart-shopping-solid.png" class="" style="width: 22px"></img><span
+							class="cart-item" style="font-weight: bold;">(4)</span></a></li>
 					<li class="mx-5"><a class="nav-link" href="login.jsp">Login</a></li>
 					<li class=""><a class="nav-link" href="register.jsp">Register</a></li>
 				</ul>

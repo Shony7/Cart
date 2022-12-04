@@ -11,3 +11,10 @@
 .admin-page .card{
 	cursor: pointer;
 }
+.discount-label{
+	font-size: 12px !important;
+	font-style: italic !important;
+}
+.product-card:hover{
+	background: rgb(192, 192, 192);
+}

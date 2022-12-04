@@ -33,7 +33,7 @@
 		<property name="show_sql">
 			true
 		</property>
-
+		<property name="connection.pool_size">100</property>
 		<mapping class="com.clicktocart.entity.User" />
 		<mapping class="com.clicktocart.entity.Products" />
 		<mapping class="com.clicktocart.entity.Category" />
