@@ -12,7 +12,7 @@ function add_to_cart(pid, pname, price) {
 		if (oldproduct) {
 			oldproduct.productQuantity = oldproduct.productQuantity + 1;
 			pcart.map((item)=>{
-				if(item.productQuantity == oldproduct.productQuantity){
+				if(item.productId == oldproduct.productId){
 					pcart.productQuantity = oldproduct.productQuantity
 				}
 			})
@@ -23,6 +23,7 @@ function add_to_cart(pid, pname, price) {
 			localStorage.setItem("cart", JSON.stringify(pcart));
 		}
 	}
+	updatecart();
 }
 
 
@@ -43,5 +44,5 @@ function updatecart(){
 }
 
 $(document).ready(function(){
-	updatecart();r
+	updatecart();
 })
